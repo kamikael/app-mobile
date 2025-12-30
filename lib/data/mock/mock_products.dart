@@ -7,7 +7,8 @@ final List<Product> mockProducts = [
     image: "assets/images/green_grape.png",
     price: 160.0,
     category: "All",
-    description: "Green Grape Pore Zero Ampoule helps to minimize pores and hydrate skin.",
+    description:
+        "Green Grape Pore Zero Ampoule helps to minimize pores and hydrate skin.",
   ),
   Product(
     id: 2,
