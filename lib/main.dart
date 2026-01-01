@@ -10,7 +10,7 @@ class SkincareApp extends StatelessWidget {
   const SkincareApp({super.key});
 
   @override
-  Widget builds(BuildContext context) {
+  Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Skincare App',

@@ -20,11 +20,11 @@ class AppRouter {
 
       case home:
         return MaterialPageRoute(
-          builder: (_) => const HomePage(),
+          builder: (_) => const HomeScreen(),
         );
 
       case productDetails:
-        final product = settings.arguments as ProductModel;
+        final product = settings.arguments as Product;
         return MaterialPageRoute(
           builder: (_) => ProductDetailsPage(product: product),
         );
