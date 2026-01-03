@@ -4,123 +4,79 @@ import '/data/models/product_model.dart';
 class ProductCard extends StatelessWidget {
   final Product product;
   final VoidCallback onFavoriteToggle;
+  final VoidCallback onTap; // 🔥 AJOUT
 
   const ProductCard({
     super.key,
     required this.product,
     required this.onFavoriteToggle,
+    required this.onTap, // 🔥 AJOUT
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.04),
-            blurRadius: 8,
-            offset: const Offset(0, 2),
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Product Image
-          Expanded(
-            flex: 3,
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.grey[50],
-                borderRadius: const BorderRadius.vertical(
-                  top: Radius.circular(16),
-                ),
-              ),
+    return InkWell(
+      borderRadius: BorderRadius.circular(20),
+      onTap: onTap, // 🔥 ICI
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        padding: const EdgeInsets.all(12),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // IMAGE
+            Expanded(
               child: Center(
-                child: ClipRRect(
-                  borderRadius: const BorderRadius.vertical(
-                    top: Radius.circular(16),
-                  ),
-                  child: Image.network(
-                    product.image,
-                    fit: BoxFit.cover,
-                    width: double.infinity,
-                    height: double.infinity,
-                    errorBuilder: (context, error, stackTrace) {
-                      return Container(
-                        color: Colors.grey[100],
-                        child: Icon(
-                          Icons.image,
-                          size: 50,
-                          color: Colors.grey[400],
-                        ),
-                      );
-                    },
-                  ),
+                child: Image.asset(
+                  product.image,
+                  fit: BoxFit.contain,
                 ),
               ),
             ),
-          ),
 
-          // Product Info
-          Expanded(
-            flex: 2,
-            child: Padding(
-              padding: const EdgeInsets.all(12),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    product.name,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black87,
-                    ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        '\$${product.price.toInt()}',
-                        style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black87,
-                        ),
-                      ),
-                      InkWell(
-                        onTap: onFavoriteToggle,
-                        child: Container(
-                          width: 32,
-                          height: 32,
-                          decoration: BoxDecoration(
-                            color: Colors.grey[50],
-                            shape: BoxShape.circle,
-                          ),
-                          child: Icon(
-                            product.isFavorite
-                                ? Icons.favorite
-                                : Icons.favorite_border_rounded,
-                            color: product.isFavorite
-                                ? Colors.red
-                                : Colors.grey[400],
-                            size: 18,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
+            const SizedBox(height: 8),
+
+            // NAME
+            Text(
+              product.name,
+              style: const TextStyle(
+                fontWeight: FontWeight.w600,
+                fontSize: 14,
               ),
             ),
-          ),
-        ],
+
+            const SizedBox(height: 4),
+
+            // PRICE + FAVORITE
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "\$${product.price}",
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: Color(0xFFB4D82E),
+                  ),
+                ),
+                IconButton(
+                  icon: Icon(
+                    product.isFavorite
+                        ? Icons.favorite
+                        : Icons.favorite_border,
+                    color: product.isFavorite
+                        ? Colors.red
+                        : Colors.grey,
+                  ),
+                  onPressed: onFavoriteToggle,
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

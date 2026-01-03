@@ -59,7 +59,7 @@ class HeroBanner extends StatelessWidget {
             bottom: 0,
             top: 0,
             child: Image.network(
-              'https://dermacosmo.com/wp-content/uploads/2024/06/pexels-shvetsa-5069404-1.webp?w=400&h=400&fit=crop',
+              'assets/images/heros.png',
               fit: BoxFit.cover,
               width: 180,
               errorBuilder: (context, error, stackTrace) {
