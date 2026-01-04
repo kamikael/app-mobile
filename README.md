@@ -105,7 +105,7 @@ Projet réalisé par **5 développeurs**, chacun responsable d’un module préc
 - Quantité
 - Bouton *Buy Now*
 
-### 🧠 Dev 5 — Data & State *(Hora)*
+### 🧠 Dev 5 — Data & State *(Horace)*
 - Models
 - Mock JSON
 - Repository
